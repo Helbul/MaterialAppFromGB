@@ -1,10 +1,13 @@
 package com.example.materialappfromgb.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.materialappfromgb.databinding.FragmentPictureBinding
@@ -40,14 +43,7 @@ class Picture : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLiveData().observe(viewLifecycleOwner
         ) {
-            when(it){
-                is AppState.Error -> TODO()
-                AppState.Loading -> TODO()
-                is AppState.Success -> {
-                    binding.imageView.load(it.pictureOfTheDayResponseData.url)
-                    //Нстроить загрузку изображения erorr() placeholder()
-                }
-            }
+            renderData(it)
         }
 
         viewModel.sendRequest()
@@ -56,10 +52,25 @@ class Picture : Fragment() {
             //Пример навигации через NavController
             //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+
+        binding.inputLayout.setEndIconOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+            })
+        }
     }
 
     private fun renderData (appState: AppState) {
+        when(appState){
+            is AppState.Error -> TODO()
+            AppState.Loading -> Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+            is AppState.Success -> {
+                binding.imageView.load(appState.pictureOfTheDayResponseData.url)
+                //Нстроить загрузку изображения erorr() placeholder()
+                binding.textviewFirst.text = appState.pictureOfTheDayResponseData.title
 
+            }
+        }
     }
 
     override fun onDestroyView() {
