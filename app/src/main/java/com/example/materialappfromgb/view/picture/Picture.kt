@@ -1,15 +1,16 @@
-package com.example.materialappfromgb.view
+package com.example.materialappfromgb.view.picture
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import coil.load
+import com.example.materialappfromgb.MainActivity
+import com.example.materialappfromgb.R
 import com.example.materialappfromgb.databinding.FragmentPictureBinding
 import com.example.materialappfromgb.viewmodel.AppState
 import com.example.materialappfromgb.viewmodel.PictureOfTheDayViewModel
@@ -48,16 +49,38 @@ class Picture : Fragment() {
 
         viewModel.sendRequest()
 
-        binding.buttonFirst.setOnClickListener {
-            //Пример навигации через NavController
-            //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
+//        binding.buttonFirst.setOnClickListener {
+//            //Пример навигации через NavController
+//            //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+//        }
 
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             })
         }
+
+
+        (requireActivity() as MainActivity).setSupportActionBar(binding.bottomAppBar)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.app_bar_favourite -> {
+                // TO DO favourite
+            }
+            R.id.app_bar_settings -> {
+                findNavController().navigate(R.id.action_FirstFragment_to_settingsFragment)
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun renderData (appState: AppState) {

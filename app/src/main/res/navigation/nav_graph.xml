@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.materialappfromgb.view.Picture"
+        android:name="com.example.materialappfromgb.view.picture.Picture"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_picture"/>
+        tools:layout="@layout/fragment_picture">
+        <action
+            android:id="@+id/action_FirstFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.materialappfromgb.view.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
 </navigation>
