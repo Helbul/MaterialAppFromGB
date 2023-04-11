@@ -12,6 +12,7 @@ import coil.load
 import com.example.materialappfromgb.MainActivity
 import com.example.materialappfromgb.R
 import com.example.materialappfromgb.databinding.FragmentPictureBinding
+import com.example.materialappfromgb.view.settings.SettingsFragment
 import com.example.materialappfromgb.viewmodel.AppState
 import com.example.materialappfromgb.viewmodel.PictureOfTheDayViewModel
 
@@ -19,6 +20,10 @@ import com.example.materialappfromgb.viewmodel.PictureOfTheDayViewModel
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class Picture : Fragment() {
+
+    companion object {
+        fun newInstance() = SettingsFragment()
+    }
 
     private var _binding: FragmentPictureBinding? = null
 
