@@ -3,11 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/PictureFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.materialappfromgb.view.Picture"
+        android:id="@+id/PictureFragment"
+        android:name="com.example.materialappfromgb.view.picture.Picture"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_picture"/>
+        tools:layout="@layout/fragment_picture">
+        <action
+            android:id="@+id/action_FirstFragment_to_settingsFragment"
+            app:destination="@id/SettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.example.materialappfromgb.view.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_FirstFragment"
+            app:destination="@id/PictureFragment" />
+    </fragment>
 </navigation>
