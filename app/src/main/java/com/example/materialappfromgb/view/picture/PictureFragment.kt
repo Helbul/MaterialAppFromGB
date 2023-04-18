@@ -19,7 +19,7 @@ import com.example.materialappfromgb.viewmodel.PictureOfTheDayViewModel
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Picture : Fragment() {
+class PictureFragment : Fragment() {
 
     companion object {
         fun newInstance() = SettingsFragment()
@@ -58,34 +58,6 @@ class Picture : Fragment() {
 //            //Пример навигации через NavController
 //            //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
 //        }
-
-        binding.inputLayout.setEndIconOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
-            })
-        }
-
-
-        (requireActivity() as MainActivity).setSupportActionBar(binding.bottomAppBar)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_main, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.app_bar_favourite -> {
-                // TO DO favourite
-            }
-            R.id.app_bar_settings -> {
-                findNavController().navigate(R.id.action_FirstFragment_to_settingsFragment)
-
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun renderData (appState: AppState) {
@@ -96,10 +68,11 @@ class Picture : Fragment() {
                 binding.imageView.load(appState.pictureOfTheDayResponseData.url)
                 //Нстроить загрузку изображения erorr() placeholder()
                 binding.textviewFirst.text = appState.pictureOfTheDayResponseData.title
-
             }
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

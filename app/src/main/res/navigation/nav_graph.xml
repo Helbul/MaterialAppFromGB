@@ -7,12 +7,15 @@
 
     <fragment
         android:id="@+id/PictureFragment"
-        android:name="com.example.materialappfromgb.view.picture.Picture"
+        android:name="com.example.materialappfromgb.view.picture.PictureFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_picture">
         <action
             android:id="@+id/action_FirstFragment_to_settingsFragment"
             app:destination="@id/SettingsFragment" />
+        <action
+            android:id="@+id/action_PictureFragment_to_wikiFragment"
+            app:destination="@id/WikiFragment" />
     </fragment>
     <fragment
         android:id="@+id/SettingsFragment"
@@ -22,5 +25,30 @@
         <action
             android:id="@+id/action_settingsFragment_to_FirstFragment"
             app:destination="@id/PictureFragment" />
+        <action
+            android:id="@+id/action_SettingsFragment_to_wikiFragment"
+            app:destination="@id/WikiFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/WikiFragment"
+        android:name="com.example.materialappfromgb.view.wiki.WikiFragment"
+        android:label="fragment_wiki"
+        tools:layout="@layout/fragment_wiki" >
+        <action
+            android:id="@+id/action_wikiFragment_to_SettingsFragment"
+            app:destination="@id/SettingsFragment" />
+        <action
+            android:id="@+id/action_wikiFragment_to_PictureFragment"
+            app:destination="@id/PictureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/FirstThemeFragment"
+        android:name="com.example.materialappfromgb.view.settings.firsttheme.FirstThemeFragment"
+        android:label="fragment_first_theme"
+        tools:layout="@layout/fragment_first_theme" />
+    <fragment
+        android:id="@+id/SecondThemeFragment"
+        android:name="com.example.materialappfromgb.view.settings.secondtheme.SecondThemeFragment"
+        android:label="fragment_second_theme"
+        tools:layout="@layout/fragment_second_theme" />
 </navigation>
