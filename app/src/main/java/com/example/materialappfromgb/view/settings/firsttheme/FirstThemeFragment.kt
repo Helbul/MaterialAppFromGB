@@ -3,6 +3,7 @@ package com.example.materialappfromgb.view.settings.firsttheme
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -40,27 +41,22 @@ class FirstThemeFragment : Fragment() {
         val localInflater = inflater.cloneInContext(context)
         _binding = FragmentFirstThemeBinding.inflate(localInflater)
         return binding.root
-//        return inflater.inflate(R.layout.fragment_first_theme, container, false)
     }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//            setCurrentThemeLocal(ThemeOne)
-//            redrawFragment()
-//
-//    }
 
     override fun onStart() {
         super.onStart()
-        setCurrentThemeLocal(ThemeOne)
-        redrawFragment()
+
+        val themeLocal = getCurrentThemeLocal()
+        if (themeLocal != ThemeOne) {
+            setCurrentThemeLocal(ThemeOne)
+            redrawFragment()
+        }
+        Log.d("OLGA", "onStart: ThemeOne")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FirstThemeViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     private fun setCurrentThemeLocal(currentTheme: Int) {
@@ -70,24 +66,18 @@ class FirstThemeFragment : Fragment() {
         editor.apply()
     }
 
-    private fun getCurrentThemeLocal(): Int {
-        val sharedPreferences = requireActivity().getSharedPreferences(KEY_SP_LOCAL, AppCompatActivity.MODE_PRIVATE)
-        return sharedPreferences.getInt(KEY_CURRENT_THEME_LOCAL, -1)
-    }
-
-    private fun getRealStyleLocal(currentTheme: Int) : Int {
-        return when (currentTheme) {
-            ThemeOne -> R.style.IndigoTheme
-            ThemeSecond -> R.style.PinkTheme
-            else -> {R.style.Theme_MaterialAppFromGB}
-        }
-    }
 
     private fun redrawFragment() {
         requireActivity().supportFragmentManager
             .beginTransaction()
             .replace(R.id.bottom_navigation_container, SettingsFragment.newInstance())
             .commit()
+    }
+
+    private fun getCurrentThemeLocal(): Int {
+        val sharedPreferences =
+            requireActivity().getSharedPreferences(KEY_SP_LOCAL, AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences.getInt(KEY_CURRENT_THEME_LOCAL, -1)
     }
 
 }

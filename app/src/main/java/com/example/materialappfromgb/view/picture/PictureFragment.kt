@@ -27,8 +27,6 @@ class PictureFragment : Fragment() {
 
     private var _binding: FragmentPictureBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -53,11 +51,6 @@ class PictureFragment : Fragment() {
         }
 
         viewModel.sendRequest()
-
-//        binding.buttonFirst.setOnClickListener {
-//            //Пример навигации через NavController
-//            //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
     }
 
     private fun renderData (appState: AppState) {

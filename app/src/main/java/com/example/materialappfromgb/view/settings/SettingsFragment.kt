@@ -2,6 +2,7 @@ package com.example.materialappfromgb.view.settings
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
@@ -58,58 +59,22 @@ class SettingsFragment : Fragment() {
             ThemeOne -> {
                 val tab: TabLayout.Tab = binding.tabLayout.getTabAt(ThemeOne)!!
                 tab.select()
+                Log.d("OLGA", "onViewCreated: 11111")
             }
             ThemeSecond -> {
                 val tab: TabLayout.Tab = binding.tabLayout.getTabAt(ThemeSecond)!!
                 tab.select()
+                Log.d("OLGA", "onViewCreated: 22222")
             }
             else -> {
+                Log.d("OLGA", "onViewCreated: 3333")
             }
         }
-
-
-//        val themeLocal = getCurrentThemeLocal()
-//        when (themeLocal) {
-//            ThemeOne -> binding.tabLayout.id = ThemeOne
-//            ThemeSecond -> binding.tabLayout.id = ThemeSecond
-//            else -> binding.tabLayout.id = ThemeSecond
-//        }
-//        Log.d("OLGA!!!!", "themeLocal = $themeLocal" )
-//
-//        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                when (tab?.position) {
-//                    ThemeOne -> {
-//                        setCurrentThemeLocal(ThemeOne)
-//                        redrawFragment()
-//                    }
-//                    ThemeSecond -> {
-//                        setCurrentThemeLocal(ThemeSecond)
-//                        redrawFragment()
-//                    }
-//                }
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//            }
-//
-//        })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
-    private fun setCurrentThemeLocal(currentTheme: Int) {
-        val sharedPreferences = requireActivity().getSharedPreferences(KEY_SP_LOCAL, AppCompatActivity.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putInt(KEY_CURRENT_THEME_LOCAL, currentTheme)
-        editor.apply()
     }
 
     private fun getCurrentThemeLocal(): Int {
@@ -123,13 +88,6 @@ class SettingsFragment : Fragment() {
             ThemeSecond -> R.style.PinkTheme
             else -> {R.style.Theme_MaterialAppFromGB}
         }
-    }
-
-    private fun redrawFragment() {
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.bottom_navigation_container, SettingsFragment.newInstance())
-            .commit()
     }
 
     private fun setTabs() {
