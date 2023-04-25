@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:motion="http://schemas.android.com/apk/res-auto">
+    <Transition
+        motion:constraintSetEnd="@layout/fragment_picture_end"
+        motion:constraintSetStart="@layout/fragment_picture"
+        motion:duration="1000">
+
+        <OnClick motion:targetId="@id/imageView" />
+
+        <OnSwipe
+            motion:touchAnchorId="@id/imageView"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragDown"/>
+    </Transition>
+
+
+    <Transition
+        motion:constraintSetEnd="@layout/fragment_picture"
+        motion:constraintSetStart="@layout/fragment_picture_end"
+        motion:duration="1000">
+
+        <OnClick motion:targetId="@id/imageView" />
+
+        <OnSwipe
+            motion:touchAnchorId="@id/imageView"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragUp"/>
+    </Transition>
+</MotionScene>
