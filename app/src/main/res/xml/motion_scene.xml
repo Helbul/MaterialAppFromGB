@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@layout/fragment_wiki"
+        motion:constraintSetStart="@layout/fragment_wiki_start"
+        motion:duration="1000">
+
+        <OnClick motion:targetId="@id/wiki_button" />
+
+        <OnSwipe
+            motion:touchAnchorId="@id/wiki_button"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragLeft"/>
+    </Transition>
+
+
+    <Transition
+        motion:constraintSetEnd="@layout/fragment_wiki_start"
+        motion:constraintSetStart="@layout/fragment_wiki"
+        motion:duration="1000">
+
+        <OnSwipe
+            motion:touchAnchorId="@id/input_layout"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragRight"/>
+    </Transition>
+
+    <Transition
+        motion:constraintSetEnd="@layout/fragment_picture_end"
+        motion:constraintSetStart="@layout/fragment_picture"
+        motion:duration="1000">
+
+        <OnClick motion:targetId="@id/imageView" />
+
+        <OnSwipe
+            motion:touchAnchorId="@id/imageView"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragDown"/>
+    </Transition>
+
+
+    <Transition
+        motion:constraintSetEnd="@layout/fragment_picture"
+        motion:constraintSetStart="@layout/fragment_picture_end"
+        motion:duration="1000">
+
+        <OnClick motion:targetId="@id/imageView" />
+
+        <OnSwipe
+            motion:touchAnchorId="@id/imageView"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragUp"/>
+    </Transition>
+
+</MotionScene>

@@ -8,7 +8,7 @@
     tools:context=".view.picture.PictureFragment">
 
         <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/main"
+            android:id="@+id/main2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutDescription="@xml/motion_scene_picture"
@@ -22,29 +22,22 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 tools:text="@string/lorem_ipsum"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="1000dp"
+                android:layout_height="1000dp"
+                android:layout_gravity="center"
+                android:scaleType="center"
+                android:src="@drawable/earth"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-               />
-
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/test_barrier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="textview_first"
-                />
-
-            <com.example.materialappfromgb.util.EquilateralImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:src="@drawable/earth"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/test_barrier" />
+                android:contentDescription="TODO" />
 
         </androidx.constraintlayout.motion.widget.MotionLayout>
 

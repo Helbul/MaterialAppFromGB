@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.materialappfromgb.databinding.FragmentWikiBinding
+import com.example.materialappfromgb.databinding.FragmentWikiStartBinding
 import com.example.materialappfromgb.viewmodel.WikiViewModel
 
 class WikiFragment : Fragment() {
@@ -17,7 +18,7 @@ class WikiFragment : Fragment() {
         fun newInstance() = WikiFragment()
     }
 
-    private var _binding: FragmentWikiBinding? = null
+    private var _binding: FragmentWikiStartBinding? = null
 
     private val binding get() = _binding!!
 
@@ -28,7 +29,7 @@ class WikiFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentWikiBinding.inflate(inflater, container, false)
+        _binding = FragmentWikiStartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
