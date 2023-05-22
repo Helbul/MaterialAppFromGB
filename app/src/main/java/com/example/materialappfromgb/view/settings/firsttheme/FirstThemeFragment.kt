@@ -54,10 +54,6 @@ class FirstThemeFragment : Fragment() {
         Log.d("OLGA", "onStart: ThemeOne")
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FirstThemeViewModel::class.java)
-    }
 
     private fun setCurrentThemeLocal(currentTheme: Int) {
         val sharedPreferences = requireActivity().getSharedPreferences(KEY_SP_LOCAL, AppCompatActivity.MODE_PRIVATE)

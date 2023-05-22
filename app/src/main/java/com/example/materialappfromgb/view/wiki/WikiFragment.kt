@@ -43,10 +43,4 @@ class WikiFragment : Fragment() {
             })
         }
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(WikiViewModel::class.java)
-    }
-
 }
