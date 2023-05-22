@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import com.example.materialappfromgb.databinding.ActivityMainBinding
+import com.example.materialappfromgb.view.notes.NoteListFragment
 import com.example.materialappfromgb.view.picture.PictureFragment
 import com.example.materialappfromgb.view.settings.SettingsFragment
 import com.example.materialappfromgb.view.wiki.WikiFragment
@@ -27,6 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
+                R.id.bottom_nav_notes -> {
+                    loadFragment(NoteListFragment())
+                    true
+                }
                 R.id.bottom_nav_picture -> {
                     loadFragment(PictureFragment())
                     true

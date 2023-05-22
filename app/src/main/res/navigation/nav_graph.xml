@@ -51,4 +51,9 @@
         android:name="com.example.materialappfromgb.view.settings.secondtheme.SecondThemeFragment"
         android:label="fragment_second_theme"
         tools:layout="@layout/fragment_second_theme" />
+    <fragment
+        android:id="@+id/NoteListFragment"
+        android:name="com.example.materialappfromgb.view.notes.NoteListFragment"
+        android:label="fragment_note_list"
+        tools:layout="@layout/fragment_note_list" />
 </navigation>
