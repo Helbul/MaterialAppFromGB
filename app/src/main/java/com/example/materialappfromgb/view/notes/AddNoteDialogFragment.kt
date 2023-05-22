@@ -45,7 +45,6 @@ class AddNoteDialogFragment : BottomSheetDialogFragment() {
         }
 
         date.setOnClickListener { datePicker.show(parentFragmentManager, "MaterialDatePicker") }
-//        val finalNoteToEdit: Note? = noteToEdit
         view.findViewById<View>(R.id.add_note).setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 saveButton.isEnabled = false
@@ -56,50 +55,20 @@ class AddNoteDialogFragment : BottomSheetDialogFragment() {
                     currentDate,
                     content.text.toString()
                 )
- //               if (finalNoteToEdit != null) {
- //                   editNote(note)
- //               } else {
                     addNote(note)
- //               }
             }
 
-//            private fun editNote(note: Note) {
-//                InMemoryNotesRepository.getInstance(requireContext())
-//                    .update(finalNoteToEdit, note, object : Callback<Note?>() {
-//                        fun onSuccess(data: Note?) {
-//                            val bundle = Bundle()
-//                            bundle.putParcelable(ARG_NOTE, data)
-//                            parentFragmentManager.setFragmentResult(KEY_RESULT_UPDATE_NOTE, bundle)
-//                            saveButton.isEnabled = true
-//                            dismiss()
-//                        }
-//
-//                        fun onError(exception: Throwable?) {
-//                            saveButton.isEnabled = true
-//                        }
-//                    })
-//            }
 
             private fun addNote(note: NoteData) {
-//                InMemoryNotesRepository.getInstance(requireContext())
-//                    .add(note, object : Callback<Note?>() {
-//                        fun onSuccess(data: Note?) {
-                            val bundle = Bundle()
-                            bundle.putString(ARG_NOTE_NAME, note.name)
-                            bundle.putString(ARG_NOTE_DESCRIPTION, note.description)
-                            val dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy")
-                            val dateStr = dateFormat.format(note.date.time)
-                            bundle.putString(ARG_NOTE_DATE, dateStr)
-                            bundle.putString(ARG_NOTE_CONTENT, note.content)
-                            parentFragmentManager.setFragmentResult(KEY_RESULT_ADD_NOTE, bundle)
- //                           saveButton.isEnabled = true
-                            dismiss()
- //                       }
-
-//                        fun onError(exception: Throwable?) {
-//                            saveButton.isEnabled = true
-//                        }
-//                    })
+                val bundle = Bundle()
+                bundle.putString(ARG_NOTE_NAME, note.name)
+                bundle.putString(ARG_NOTE_DESCRIPTION, note.description)
+                val dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy")
+                val dateStr = dateFormat.format(note.date.time)
+                bundle.putString(ARG_NOTE_DATE, dateStr)
+                bundle.putString(ARG_NOTE_CONTENT, note.content)
+                parentFragmentManager.setFragmentResult(KEY_RESULT_ADD_NOTE, bundle)
+                dismiss()
             }
         })
     }
@@ -107,7 +76,6 @@ class AddNoteDialogFragment : BottomSheetDialogFragment() {
     companion object {
         const val TYPE_NOTE = 1
         const val KEY_RESULT_ADD_NOTE = "KEY_RESULT_ADD_NOTE"
-//        const val KEY_RESULT_UPDATE_NOTE = "KEY_RESULT_UPDATE_NOTE"
         const val ARG_NOTE_NAME = "ARG_NOTE_NAME"
         const val ARG_NOTE_DESCRIPTION = "ARG_NOTE_DESCRIPTION"
         const val ARG_NOTE_CONTENT = "ARG_NOTE_CONTENT"
@@ -116,13 +84,5 @@ class AddNoteDialogFragment : BottomSheetDialogFragment() {
         fun addInstance(): AddNoteDialogFragment {
             return AddNoteDialogFragment()
         }
-
-//        fun editInstance(note: Note?): AddNoteDialogFragment {
-//            val args = Bundle()
-//            args.putParcelable(ARG_NOTE, note)
-//            val fragment = AddNoteDialogFragment()
-//            fragment.arguments = args
-//            return fragment
-//        }
     }
 }

@@ -72,7 +72,6 @@ class NoteListFragment : Fragment() {
         itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
         binding.add.setOnClickListener {
-//            adapter.appendItem()
             AddNoteDialogFragment
                 .addInstance()
                 .show(parentFragmentManager, "AddNoteDialogFragment")
@@ -95,9 +94,6 @@ class NoteListFragment : Fragment() {
                     NoteData(TYPE_NOTE, nameArg, descriptionArg, dateArg, contentArg)
 
                 adapter.appendItem(note)
- //               val index: Int = adapter.addNote(note)
-//                notesAdapter.notifyItemInserted(index)
-//                recyclerView.smoothScrollToPosition(index)
             }
     }
 }

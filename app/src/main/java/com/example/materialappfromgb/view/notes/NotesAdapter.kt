@@ -68,15 +68,6 @@ class NotesAdapter(
         notifyItemRemoved(position)
     }
 
-//    inner class EarthViewHolder(view: View) : BaseViewHolder(view) {
-//
-//        override fun bind(data: Pair<NoteData, Boolean>) {
-//            if (layoutPosition != RecyclerView.NO_POSITION) {
-//                itemView.findViewById<TextView>(R.id.descriptionTextView).text = data.first.someDescription
-//                itemView.findViewById<ImageView>(R.id.wikiImageView).setOnClickListener { onListItemClickListener.onItemClick(data.first) }
-//            }
-//        }
-//    }
 
     inner class NoteViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperViewHolder {
         override fun bind(data: Pair<NoteData, Boolean>) {
@@ -89,9 +80,6 @@ class NotesAdapter(
             val dateStr: String = dateFormat.format(data.first.date.time)
             itemView.findViewById<TextView>(R.id.date).text = dateStr
 
-//            itemView.setOnClickListener {
-//                onListItemClickListener.onItemClick(data.first)
-//            }
 
             itemView.setOnClickListener {
                 toggleText()
@@ -107,27 +95,7 @@ class NotesAdapter(
                 false
             }
         }
-//   }
 
-//    inner class MarsViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperViewHolder {
-//
-//        override fun bind(data: Pair<Data, Boolean>) {
-//            itemView.findViewById<ImageView>(R.id.marsImageView).setOnClickListener { onListItemClickListener.onItemClick(data.first) }
-//            itemView.findViewById<ImageView>(R.id.addItemImageView).setOnClickListener { addItem() }
-//            itemView.findViewById<ImageView>(R.id.removeItemImageView).setOnClickListener { removeItem() }
-//            itemView.findViewById<ImageView>(R.id.moveItemDown).setOnClickListener { moveDown() }
-//            itemView.findViewById<ImageView>(R.id.moveItemUp).setOnClickListener { moveUp() }
-//            itemView.findViewById<TextView>(R.id.marsDescriptionTextView).visibility =
-//                if (data.second) View.VISIBLE else View.GONE
-//            itemView.findViewById<TextView>(R.id.marsTextView).setOnClickListener { toggleText() }
-//            itemView.findViewById<ImageView>(R.id.dragHandleImageView).setOnTouchListener { _, event ->
-//                if (event.actionMasked == MotionEvent.ACTION_DOWN) {
-//                    dragListener.onStartDrag(this)
-//                }
-//                false
-//            }
-//
-//        }
 
         private fun toggleText() {
             data[layoutPosition] = data[layoutPosition].let {
@@ -156,12 +124,6 @@ class NotesAdapter(
 
         private fun addItem(note: NoteData?) {
             note?.let { data.add(layoutPosition, Pair(note, false)) } ?: data.add(layoutPosition, generateItem())
-
-//            if (note != null) {
-//                data.add(layoutPosition, Pair(note, false))
-//            }else {
-//                data.add(layoutPosition, generateItem())
-//            }
             notifyItemInserted(layoutPosition)
         }
 
