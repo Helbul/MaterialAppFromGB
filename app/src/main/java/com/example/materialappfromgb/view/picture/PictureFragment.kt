@@ -1,19 +1,25 @@
 package com.example.materialappfromgb.view.picture
 
-import android.content.Intent
-import android.net.Uri
+import android.graphics.Color
+import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
+import android.text.Spannable
+import android.text.style.ForegroundColorSpan
+import android.text.style.QuoteSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.TypefaceSpan
 import android.view.*
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.transition.*
 import coil.load
-import com.example.materialappfromgb.MainActivity
 import com.example.materialappfromgb.R
 import com.example.materialappfromgb.databinding.FragmentPictureBinding
 import com.example.materialappfromgb.view.settings.SettingsFragment
@@ -102,8 +108,39 @@ class PictureFragment : Fragment() {
                 binding.imageView.load(appState.pictureOfTheDayResponseData.url)
                 //Нстроить загрузку изображения erorr() placeholder()
                 binding.textviewFirst.visibility = TextureView.VISIBLE
-                binding.textviewFirst.text = appState.pictureOfTheDayResponseData.title
 
+                binding.textviewFirst.setText(appState.pictureOfTheDayResponseData.title, TextView.BufferType.SPANNABLE)
+                val spannableText = binding.textviewFirst.text as Spannable
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    spannableText.setSpan(
+                        QuoteSpan(Color.GREEN, 10, 20),
+                        0, spannableText.length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                spannableText.setSpan(
+                    ForegroundColorSpan(Color.RED),
+                    0, 1,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+
+                val myCustomFont : Typeface? = context?.let { ResourcesCompat.getFont(it, R.font.aguafina_script) }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    with(spannableText) {
+                        setSpan(
+                            myCustomFont?.let { TypefaceSpan(it) },
+                            0, 1,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    }
+                }
+
+                spannableText.setSpan(
+                    RelativeSizeSpan(2f),
+                    0, 1,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
             }
         }
     }
