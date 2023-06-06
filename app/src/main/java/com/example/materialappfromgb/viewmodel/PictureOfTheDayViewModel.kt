@@ -32,7 +32,7 @@ class PictureOfTheDayViewModel(
             if(response.isSuccessful){
                 liveData.postValue(AppState.Success(response.body()!!))
             }else {
-                liveData.postValue(AppState.Error(throw IllegalStateException("error :((")))
+                //liveData.postValue(AppState.Error(throw IllegalStateException("error :((")))
             }
         }
 
